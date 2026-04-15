@@ -1,4 +1,4 @@
-# Bebop Webots Simulator
+# neroFly
 
 This package provides a Webots-based simulator that replicates the dynamics of the Parrot Bebop 2 drone. 
 
