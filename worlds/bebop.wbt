@@ -1,0 +1,103 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/Pavement.proto"
+
+WorldInfo {
+  basicTimeStep 16
+  coordinateSystem "ENU"
+}
+
+Viewpoint {
+  fieldOfView 0.785
+  orientation -0.142 0.903 0.406 0.676
+  position -3.7 -1.16 3.05
+  near 0.05
+}
+
+TexturedBackground {}
+TexturedBackgroundLight { castShadows TRUE }
+
+Floor {
+  translation 0 0 0
+  size 100 100
+  appearance Pavement { 
+    type "braun square stone" 
+  }
+}
+
+DEF DRONE_BODY Robot {
+  translation 0 0 0.05
+  rotation 0 0 1 0
+  supervisor TRUE
+  name "bebop"
+  children [
+    Pose {
+      children [
+        Shape {
+          castShadows FALSE
+          appearance PBRAppearance { baseColor 0.02 0.02 0.02 roughness 0.4 }
+          geometry Mesh { url "meshes/hull.dae" }
+        }
+      ]
+    }
+    DEF PROP_FR Pose { 
+      translation 0.085 -0.1155 -0.005 
+      children [ Shape { castShadows FALSE appearance PBRAppearance { baseColor 0.8 0 0 } geometry Mesh { url "meshes/propeller_fr.dae" } } ] 
+    }
+    DEF PROP_FL Pose { 
+      translation 0.085 0.1155 -0.005 
+      children [ Shape { castShadows FALSE appearance PBRAppearance { baseColor 0.8 0 0 } geometry Mesh { url "meshes/propeller_fl.dae" } } ] 
+    }
+    DEF PROP_RR Pose { 
+      translation -0.09 -0.1155 -0.005 
+      children [ Shape { castShadows FALSE appearance PBRAppearance { baseColor 0.6 0.6 0.6 } geometry Mesh { url "meshes/propeller_rr.dae" } } ] 
+    }
+    DEF PROP_RL Pose { 
+      translation -0.09 0.1155 -0.005 
+      children [ Shape { castShadows FALSE appearance PBRAppearance { baseColor 0.6 0.6 0.6 } geometry Mesh { url "meshes/propeller_rl.dae" } } ] 
+    }
+    DEF DRONE_CAMERA Camera {
+      translation 0.12 0 0.01
+      name "camera"
+      fieldOfView 1.3445
+      width 856
+      height 480
+    }
+  ]
+  controller "<extern>"
+}
+
+DEF TARGET_POINT Robot {
+  translation 0 0 -100
+  rotation 0 0 1 0
+  name "target_visualizer"
+  supervisor TRUE
+  controller "<extern>"
+  children [
+    Pose {
+      rotation 0 1 0 1.5708
+      translation 0.1 0 0
+      children [ 
+        Shape { 
+          castShadows FALSE 
+          appearance PBRAppearance { baseColor 1 0 0 emissiveColor 1 0 0 } 
+          geometry Cylinder { height 0.2 radius 0.01 } 
+        } 
+      ]
+    }
+    Pose {
+      rotation 0 1 0 1.5708
+      translation 0.2 0 0
+      children [ 
+        Shape { 
+          castShadows FALSE 
+          appearance PBRAppearance { baseColor 1 0 0 emissiveColor 1 0 0 } 
+          geometry Cone { bottomRadius 0.03 height 0.05 } 
+        } 
+      ]
+    }
+  ]
+}
