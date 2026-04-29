@@ -106,8 +106,7 @@ class BebopWebotsFullSim(Node):
             if self.last_cmd and (curr_time - self.last_cmd_time) < self.drift_timeout:
                 self.u = np.array([self.last_cmd.linear.x, self.last_cmd.linear.y, self.last_cmd.linear.z, self.last_cmd.angular.z])
             else:
-                t = self.tick * self.dt
-                self.u = np.array([0.05 * math.sin(0.8 * t), 0.05 * math.cos(0.7 * t), 0.005 * math.sin(0.4 * t), 0.0])
+                self.u[:] = 0.0
         else:
             self.u[:] = 0.0
 
