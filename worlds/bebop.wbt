@@ -59,12 +59,17 @@ DEF DRONE_BODY Robot {
       translation -0.09 0.1155 -0.005 
       children [ Shape { castShadows FALSE appearance PBRAppearance { baseColor 0.6 0.6 0.6 } geometry Mesh { url "meshes/propeller_rl.dae" } } ] 
     }
-    DEF DRONE_CAMERA Camera {
+    DEF GIMBAL Pose {
       translation 0.12 0 0.01
-      name "camera"
-      fieldOfView 1.3445
-      width 856
-      height 480
+      rotation 0 0 1 0
+      children [
+        DEF DRONE_CAMERA Camera {
+          name "camera"
+          fieldOfView 1.3445
+          width 856
+          height 480
+        }
+      ]
     }
   ]
   controller "<extern>"
