@@ -7,7 +7,6 @@ class PioneerRosController:
         self.robot = robot
         self.time_step = int(self.robot.getBasicTimeStep())
         
-        # Nombres exactos de los motores del Pioneer 3AT en Webots
         self.wheels = []
         wheel_names = ['front left wheel', 'front right wheel', 'back left wheel', 'back right wheel']
         for name in wheel_names:
@@ -49,7 +48,6 @@ def main(args=None):
     pioneer_robot = Robot()
     controller = PioneerRosController(pioneer_robot)
     controller.run()
-    # No olvides cerrar rclpy al terminar
     rclpy.shutdown()
 
 if __name__ == '__main__':

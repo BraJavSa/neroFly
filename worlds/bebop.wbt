@@ -6,7 +6,7 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/Pavement.proto"
 
 WorldInfo {
-  basicTimeStep 16
+  basicTimeStep 32
   coordinateSystem "ENU"
 }
 

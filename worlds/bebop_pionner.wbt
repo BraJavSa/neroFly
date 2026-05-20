@@ -9,7 +9,7 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 
 
 WorldInfo {
-  basicTimeStep 16
+  basicTimeStep 32
   coordinateSystem "ENU"
 }
 

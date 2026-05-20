@@ -7,12 +7,10 @@ from webots_ros2_driver.webots_launcher import WebotsLauncher
 def generate_launch_description():
     package_dir = get_package_share_directory('neroFly')
     
-    # Referencia al nuevo mundo con el Pioneer 3-AT
     world_path = os.path.join(package_dir, 'worlds', 'bebop_pionner.wbt')
 
     webots = WebotsLauncher(world=world_path, mode='realtime')
 
-    # Nodo del Dron Bebop
     simulator_node = Node(
         package='neroFly',
         executable='simulator_node',
@@ -27,7 +25,6 @@ def generate_launch_description():
         additional_env={'WEBOTS_CONTROLLER_URL': 'pioneer_3at'}
     )
 
-    # Nodo de la Flecha de Referencia
     visualizer_node = Node(
         package='neroFly',
         executable='visualizer_node',
